@@ -1,0 +1,57 @@
+source 'https://github.com/tpctt/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+#platform :ios, "8.0"
+
+
+workspace 'TimCoreDemo.xcworkspace'
+
+
+
+target:TimCoreDemo  do
+    project 'TimCoreDemo/TimCoreDemo.xcodeproj'
+    
+    pod 'XAspect'
+    
+    
+end
+
+target:TimJpushDemo  do
+project 'TimJpushDemo/TimJpushDemo.xcodeproj'   
+pod 'XAspect'
+pod 'JPush-iOS-SDK','~> 2.2.0'
+
+end
+
+
+
+ 
+
+
+
+
+target:TimAFAppConnectClient  do
+    project 'TimAFAppConnectClient/TimAFAppConnectClient.xcodeproj'
+
+    pod 'AFNetworking','~> 3.1.0'
+    
+    
+end
+
+
+
+
+
+
+target:TimBaseListViewModel  do
+    project 'TimBaseListViewModel/TimBaseListViewModel.xcodeproj'
+    
+    pod 'ReactiveCocoa','~>2.5'
+    pod 'TimCore/TimAFAppConnectClient'
+    pod 'TMCache'
+    
+    
+    
+end
+
+

@@ -1,0 +1,53 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - JPush-iOS-SDK (2.2.0)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - TimCore/TimAFAppConnectClient (1.1.0):
+    - AFNetworking (~> 3.1.0)
+  - TMCache (2.1.0)
+  - XAspect (1.0.5):
+    - XAspect/Core (= 1.0.5)
+    - XAspect/Macros (= 1.0.5)
+  - XAspect/Core (1.0.5):
+    - XAspect/Macros
+  - XAspect/Macros (1.0.5)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - JPush-iOS-SDK (~> 2.2.0)
+  - ReactiveCocoa (~> 2.5)
+  - TimCore/TimAFAppConnectClient
+  - TMCache
+  - XAspect
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  JPush-iOS-SDK: 44ae7a71c04ff0b08031451d985993ece83acadf
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  TimCore: 78de8530bf685092ab7af789e983bd2c7a2c3675
+  TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
+  XAspect: db50bf487f92dbb8557a7a5365556966c8493af8
+
+PODFILE CHECKSUM: b111ab559efd492d576f1f0f8059f51263b55258
+
+COCOAPODS: 1.1.1
