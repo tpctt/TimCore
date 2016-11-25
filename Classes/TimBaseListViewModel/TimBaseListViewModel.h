@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
+#import <TMCache.h>
 #import <TimAFAppConnectClient.h>
 
 
