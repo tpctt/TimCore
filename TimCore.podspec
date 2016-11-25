@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TimCore'
-  s.version          = "1.2.0"
+  s.version          = "1.2.1"
   s.summary          = 'Timcore 为其他的 module 需要的基本支持部分,推送,分享, ViewModel,网络部分=='
   s.license          = 'MIT'
   s.author           = { "Tim" => "491590253@qq.com" }
@@ -40,27 +40,27 @@ Pod::Spec.new do |s|
 
     end
 
- s.subspec 'TimShare' do |sp|
-        # sp.vendored_frameworks = 'ShareSDK/Support/Required/ShareSDKConnector.framework'
-       sp.libraries = 'icucore', 'z', 'stdc++'
-        # sp.resources = 'ShareSDK/Support/Required/ShareSDK.bundle'
-       sp.source_files = 'Classes/TimShare/**/*.{h,m,mm}' 
+ # s.subspec 'TimShare' do |sp|
+ #        # sp.vendored_frameworks = 'ShareSDK/Support/Required/ShareSDKConnector.framework'
+ #       sp.libraries = 'icucore', 'z', 'stdc++'
+ #        # sp.resources = 'ShareSDK/Support/Required/ShareSDK.bundle'
+ #       sp.source_files = 'Classes/TimShare/**/*.{h,m,mm}' 
 
-       sp.dependency 'TimCore/TimCore'
+ #       sp.dependency 'TimCore/TimCore'
 
-       sp.dependency 'XAspect'
+ #       sp.dependency 'XAspect'
 
-        sp.dependency 'ShareSDK3'
-        sp.dependency 'MOBFoundation'
-        sp.dependency 'ShareSDK3/ShareSDKUI'
-        sp.dependency 'ShareSDK3/ShareSDKPlatforms/QQ'
-        sp.dependency 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
-        sp.dependency 'ShareSDK3/ShareSDKPlatforms/WeChat'
-        sp.dependency 'ShareSDK3/ShareSDKExtension'
+ #        sp.dependency 'ShareSDK3'
+ #        sp.dependency 'MOBFoundation'
+ #        sp.dependency 'ShareSDK3/ShareSDKUI'
+ #        sp.dependency 'ShareSDK3/ShareSDKPlatforms/QQ'
+ #        sp.dependency 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+ #        sp.dependency 'ShareSDK3/ShareSDKPlatforms/WeChat'
+ #        sp.dependency 'ShareSDK3/ShareSDKExtension'
 
 
 
-   end
+ #   end
    
 
     s.subspec 'TimAFAppConnectClient' do |sp|
