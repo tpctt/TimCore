@@ -36,10 +36,12 @@ TimCore分为 core 核心布恩,和 TimJpush ,TimShare ,TimBaseViewModel ,TimAFA
 <h1>TimJpush</h1>
 <ul>
 <li>简化推送的代码逻辑,这个使用的 jpush 作为拓展,只需要设置3方 sdk 的 key 和 一个 收到推送的 block 即可</li>
-<li>借鉴于 jiaAppDelegate 的,[jiaAppDelegate]</li>
+<li>借鉴于 jiaAppDelegate 的,[jiaAppDelegate] , 不能忘记   [super application:application didFinishLaunchingWithOptions:launchOptions];
+</li>
 <li>借推送测试工具 <https://github.com/KnuffApp/Knuff></li>
 
 ````objectivec
+
 +(void)load
 {
 [super load];
@@ -53,6 +55,8 @@ TimCore分为 core 核心布恩,和 TimJpush ,TimShare ,TimBaseViewModel ,TimAFA
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 // Override point for customization after application launch.
+///不能忘记
+[super application:application didFinishLaunchingWithOptions:launchOptions];
 
 __weak AppDelegate *weak_self =self;
 self.pushBlock = ^(NSDictionary *userInfo, UIApplicationState state){
