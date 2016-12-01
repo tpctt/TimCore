@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TimCore'
-  s.version          = "1.2.1"
+  s.version          = "1.2.3"
   s.summary          = 'Timcore 为其他的 module 需要的基本支持部分,推送,分享, ViewModel,网络部分=='
   s.license          = 'MIT'
   s.author           = { "Tim" => "491590253@qq.com" }
@@ -31,9 +31,10 @@ Pod::Spec.new do |s|
         sp.libraries = 'icucore', 'z', 'stdc++'
         # sp.resources = 'ShareSDK/Support/Required/ShareSDK.bundle'
         sp.source_files = 'Classes/TimJpush/**/*.{h,m,mm}' 
-        
-       sp.dependency 'TimCore/TimCore'
+        sp.frameworks = 'UserNotifications'
 
+        sp.dependency 'TimCore/TimCore'
+        
         sp.dependency 'XAspect'
         sp.dependency 'JPush'
 
