@@ -437,8 +437,14 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
             
 //
             
-            [self.appConnectClient skPostWithMethodName:self.path param:self.vmPara    checkNullData:NO
-                                                      successBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json) {
+            [self.appConnectClient skPostWithMethodName:self.path param:self.vmPara constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nullable formData) {
+                @strongify(self);
+                
+                if (self.formDataInputBlock) {
+                    self.formDataInputBlock(formData);
+                }
+                
+            } progress:nil checkNullData:NO    successBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json) {
                 
                 
                       @strongify(self);
