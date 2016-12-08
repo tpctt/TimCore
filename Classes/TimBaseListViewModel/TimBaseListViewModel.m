@@ -196,7 +196,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                   
                 
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
-                
+                self.output = json;
+
                 [subscriber sendError:error];
 //                [subscriber sendCompleted];
 
@@ -456,7 +457,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                       }
                                                           
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
-                
+                self.output = json;
+
                 [subscriber sendError:error];
 //                [subscriber sendCompleted];
                 
