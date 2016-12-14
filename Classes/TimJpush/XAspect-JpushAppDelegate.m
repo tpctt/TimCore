@@ -45,11 +45,7 @@
 
 
 @synthesizeNucleusPatch(Default,-,void, dealloc);
-+(void)load
-{
-    [TimCoreAppDelegate restoreTokenIfNeed];
 
-}
 /** app 启动过程 **/
 AspectPatch(-, BOOL, application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions)
 {
