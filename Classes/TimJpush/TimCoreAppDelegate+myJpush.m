@@ -201,12 +201,26 @@ static const void *TimdeviceTokenKey  = &TimdeviceTokenKey;
 -(void)setDeviceToken:(NSString *)deviceToken
 {
     objc_setAssociatedObject(self, TimdeviceTokenKey, deviceToken, OBJC_ASSOCIATION_RETAIN_NONATOMIC  );
+    if(deviceToken){
+        [[NSUserDefaults standardUserDefaults]setObject:deviceToken forKey:@"TimCore_TimdeviceTokenKey"];
+        
+    }else{
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TimCore_TimdeviceTokenKey"];
+        
+    }
+    [[NSUserDefaults standardUserDefaults]  synchronize];
+    
 
 }
 -(NSString *)deviceToken
 {
-    return objc_getAssociatedObject(self, TimdeviceTokenKey);
-
+    NSString *deviceToken=  objc_getAssociatedObject(self, TimdeviceTokenKey);
+    if (deviceToken==nil) {
+//        缓存 token,处理 ios8 token 延迟的问题
+        deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimCore_TimdeviceTokenKey"];
+        
+    }
+    return deviceToken;
 }
 
 
@@ -215,12 +229,52 @@ static const void *TimregistrationIDKey  = &TimregistrationIDKey;
 -(void)setRegistrationID:(NSString *)registrationID
 {
     objc_setAssociatedObject(self, TimregistrationIDKey, registrationID, OBJC_ASSOCIATION_RETAIN_NONATOMIC  );
+    
+    if(registrationID){
+        [[NSUserDefaults standardUserDefaults]setObject:registrationID forKey:@"TimCore_TimregistrationIDKey"];
+        
+    }else{
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TimCore_TimregistrationIDKey"];
+        
+    }
+    [[NSUserDefaults standardUserDefaults]  synchronize];
+//
+    
 
 }
 -(NSString *)registrationID
 {
-    return objc_getAssociatedObject(self, TimregistrationIDKey);
+    NSString *registrationID = objc_getAssociatedObject(self, TimregistrationIDKey);
+    if (registrationID==nil) {
+//        缓存 token,处理 ios8 token 延迟的问题
+        registrationID = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimCore_TimregistrationIDKey"];
 
+    }
+    return registrationID;
+    
 }
+
+///缓存 token,处理 ios8 token 延迟的问题
++(void)restoreTokenIfNeed
+{
+    
+//    if ([TimCoreAppDelegate shareInstance].deviceToken==nil) {
+//        
+//        NSString *deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimCore_TimdeviceTokenKey"];
+//        if(deviceToken)
+//            [TimCoreAppDelegate shareInstance].deviceToken == deviceToken;
+//        
+//    }
+//    
+//    
+//    if ([TimCoreAppDelegate shareInstance].registrationID==nil) {
+//        
+//        NSString *registrationID = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimCore_TimregistrationIDKey"];
+//        if(registrationID)
+//            [TimCoreAppDelegate shareInstance].registrationID == registrationID;
+//        
+//    }
+}
+
 
 @end

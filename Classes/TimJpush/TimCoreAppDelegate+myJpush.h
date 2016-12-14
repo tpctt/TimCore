@@ -39,4 +39,7 @@ typedef void(^DealPushDataBlock)(NSDictionary *userInfo, UIApplicationState stat
 ///[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
 -(void)receiveNotificationByLaunchingOptionsUserInfo:(NSDictionary*)dic;
 
+///缓存 token,处理 ios8 token 延迟的问题
++(void)restoreTokenIfNeed;
+
 @end

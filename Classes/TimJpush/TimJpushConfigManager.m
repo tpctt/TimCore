@@ -19,9 +19,12 @@
         instance = [TimJpushConfigManager new];
         instance.apsForProduction = YES;
         
+        
+        
     });
 
     return instance;
 }
+
 
 @end
