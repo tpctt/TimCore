@@ -282,19 +282,44 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 
 -(void)dealArrayToSearch:(NSArray *)array
 {
-//    if (!([UIDevice currentDevice].systemVersion.floatValue >= 9.0)) {
-//        return;
-//    }
-//    NSMutableArray *seachableItems = [NSMutableArray array ];
+    if (!([UIDevice currentDevice].systemVersion.floatValue >= 9.0)) {
+        return;
+    }
+    NSMutableArray *seachableItems = [NSMutableArray array ];
+    
+    for(NSObject *object in array){
+        if ([object conformsToProtocol:@protocol(TimSearchItemForObjectProtocol)] && [object respondsToSelector:@selector(searchableItem)]) {
+            
+            NSObject<TimSearchItemForObjectProtocol > *objectProtocol = object;
+            CSSearchableItem *item = [objectProtocol searchableItem];
+            
+            if(item){
+                [seachableItems addObject:item];
+            }
+            
+        }
+    }
+    
+    
+    CSSearchableIndex *manager = [CSSearchableIndex new];
+    [manager beginIndexBatch];
+    [manager indexSearchableItems:seachableItems
+                completionHandler:^(NSError * __nullable error){                                                              if (error)
+                        NSLog(@"%@",error.localizedDescription);
+    
+                }];
+    [manager endIndexBatchWithClientState:nil completionHandler:^(NSError * _Nullable error) {
+        
+    }];
+    
 //    
-//    if (([UIDevice currentDevice].systemVersion.floatValue >= 9.0)) {
-//        
-//        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:seachableItems
-//                                                       completionHandler:^(NSError * __nullable error) {                                                              if (error)
-//                                                           NSLog(@"%@",error.localizedDescription);
-//                                                           
-//                                                       }];
-//    }
+//    [[CSSearchableIndex defaultSearchableIndex]
+//     indexSearchableItems:seachableItems
+//        completionHandler:^(NSError * __nullable error){                                                              if (error)
+//                NSLog(@"%@",error.localizedDescription);
+//                                                       
+//    }];
+    
 }
 
 
