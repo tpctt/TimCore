@@ -38,7 +38,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 @property (nonatomic, strong) NSString * _Nonnull path;
 @property (nonatomic, strong) NSDictionary * _Nonnull vmPara;
 
-@property (nonatomic, strong) id _Nullable output;
+@property (nonatomic, strong) id _Nullable output;///收到的
 @property (nonatomic, strong) NSString *_Nullable msg;
 @property (nonatomic, copy) RACCommandOutput _Nullable outputBlock;
 @property (nonatomic, copy) RACCommandInput _Nullable inputBlock;
@@ -55,6 +55,9 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 -(void)didGetData:(id  _Nullable )json subscriber:(id<RACSubscriber>_Nullable) subscriber isCache:(BOOL)isCache;
 -(NSString *_Nullable)getCacheKey;
 
+///spot
+-(NSArray *)getSearchArray;
+-(void)dealArrayToSearch:(NSArray *)array;
 
 @end
 
@@ -69,7 +72,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger totalPage;
 
-@property (nonatomic, copy) RACCommandChanged _Nullable block;
+@property (nonatomic, copy) RACCommandChanged _Nullable block;///转 array 的 block
 
 @property (nonatomic, strong) Class _Nullable listObjClass;
 

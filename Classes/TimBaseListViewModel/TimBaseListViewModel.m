@@ -88,7 +88,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
         [subscriber sendNext:dict];
         
     }
-    
+    [self dealArrayToSearch:[self getSearchArray]];
+
     if(isCache == NO){
         [subscriber sendCompleted];
     }
@@ -278,13 +279,30 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 }
 //
 
-
-
+////搜索相关
 -(void)dealArrayToSearch:(NSArray *)array
+{
+    @weakify(self);
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        @strongify(self);
+        
+        [self dealArrayToSearchInQueue:array];
+        
+    });
+}
+-(NSArray *)getSearchArray
+{
+    return nil;
+}
+-(void)dealArrayToSearchInQueue:(NSArray *)array
 {
     if (!([UIDevice currentDevice].systemVersion.floatValue >= 9.0)) {
         return;
     }
+    if (array.count <= 0 ) {
+        return;
+    }
+    
     NSMutableArray *seachableItems = [NSMutableArray array ];
     
     for(NSObject *object in array){
@@ -392,7 +410,12 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
     
     NSArray *array = nil;
-    if(self.block) array= self.block( dict ) ;
+    if(self.block){
+        array= self.block( dict );
+    }
+    if(self.outputBlock){
+        [subscriber  sendNext:self.outputBlock(dict)];
+    }
     
     
     NSMutableArray *mArray  =[NSMutableArray array];
@@ -413,9 +436,10 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
     self.dataArray = mArray;
     
-    
     [subscriber sendNext:array];
-    
+//    [self dealArrayToSearch:[self getSearchArray]];
+    [self dealArrayToSearch:array];
+
     if(isCache == NO){
         [subscriber sendCompleted];
         
@@ -506,17 +530,6 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
   
     
-    ///spot seach
-    [RACObserve(self, dataArray) subscribeNext:^(id x) {
-        @strongify(self);
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            @strongify(self);
-
-            [self dealArrayToSearch:self.dataArray];
-            
-        });
-        
-    }];
     
 }
 
