@@ -8,11 +8,11 @@
 
 #import "TimBaseListViewModel.h"
 #import <TMCache.h>
-
+#import <TimSearchItemForObjectProtocol.h>
 //#import <SVProgressHUD.h>
 
 #import <CoreSpotlight/CoreSpotlight.h>
-
+#import "AppDelegate.h"
 
 const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 
@@ -308,7 +308,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     for(NSObject *object in array){
         if ([object conformsToProtocol:@protocol(TimSearchItemForObjectProtocol)] && [object respondsToSelector:@selector(searchableItem)]) {
             
-            NSObject<TimSearchItemForObjectProtocol > *objectProtocol = object;
+            NSObject<TimSearchItemForObjectProtocol > *objectProtocol = (id<TimSearchItemForObjectProtocol>)object;
             CSSearchableItem *item = [objectProtocol searchableItem];
             
             if(item){
@@ -326,7 +326,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                         NSLog(@"%@",error.localizedDescription);
     
                 }];
-    [manager endIndexBatchWithClientState:nil completionHandler:^(NSError * _Nullable error) {
+    [manager endIndexBatchWithClientState:[NSData new] completionHandler:^(NSError * _Nullable error) {
         
     }];
     

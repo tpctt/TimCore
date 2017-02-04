@@ -21,14 +21,6 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 
 
 
-@protocol TimSearchItemForObjectProtocol <NSObject>
-///获取用于转换为搜索的数据
--(CSSearchableItem *)searchableItem;
-///用于处理Appledelegate 传来的搜索选择动作的数据
--(void)continueUserActivityWith:(NSDictionary *)mj_keyValues;
-
-
-@end
 
 @interface TimBaseViewModel : NSObject
 {
@@ -56,8 +48,8 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 -(NSString *_Nullable)getCacheKey;
 
 ///spot
--(NSArray *)getSearchArray;
--(void)dealArrayToSearch:(NSArray *)array;
+-(NSArray *_Nullable)getSearchArray;
+-(void)dealArrayToSearch:(NSArray *_Nullable)array;
 
 @end
 

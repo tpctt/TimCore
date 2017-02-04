@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TimCore'
-  s.version          = "1.2.8"
+  s.version          = "1.2.10"
   s.summary          = 'Timcore 为其他的 module 需要的基本支持部分,推送,分享, ViewModel,网络部分=='
   s.license          = 'MIT'
   s.author           = { "Tim" => "491590253@qq.com" }
@@ -94,5 +94,23 @@ Pod::Spec.new do |s|
 
     end
     
+
+ s.subspec 'TimProtocol' do |sp|
+        # sp.vendored_frameworks = 'ShareSDK/Support/Required/ShareSDKConnector.framework'
+        sp.libraries = 'icucore', 'z', 'stdc++'
+        # sp.resources = 'ShareSDK/Support/Required/ShareSDK.bundle'
+        sp.source_files = 'Classes/TimProtocol/**/*.{h,m,mm}' 
+        
+        # sp.dependency 'TimCore/TimAFAppConnectClient'
+        # sp.dependency 'TimCore/TimAFAppConnectClient'
+
+        # sp.dependency 'TMCache'
+        # sp.dependency 'ReactiveCocoa','~>2.5'
+        
+
+
+    end
+
+
 
 end
