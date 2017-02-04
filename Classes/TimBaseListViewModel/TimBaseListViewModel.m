@@ -12,7 +12,7 @@
 //#import <SVProgressHUD.h>
 
 #import <CoreSpotlight/CoreSpotlight.h>
-#import "AppDelegate.h"
+// #import "AppDelegate.h"
 
 const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 
