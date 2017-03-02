@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TimCore'
-  s.version          = "1.2.10"
+  s.version          = "1.2.12"
   s.summary          = 'Timcore 为其他的 module 需要的基本支持部分,推送,分享, ViewModel,网络部分=='
   s.license          = 'MIT'
   s.author           = { "Tim" => "491590253@qq.com" }
@@ -22,6 +22,8 @@ Pod::Spec.new do |s|
         sp.source_files = 'Classes/TimCore/**/*.{h,m,mm}' 
         sp.source_files = 'Classes/TimCore/*.{h,m,mm}' 
         # sp.public_header_files = 'Classes/TimCore/*.h'
+
+        sp.dependency 'TimCore/TimProtocol'
 
     end
   
@@ -85,7 +87,7 @@ Pod::Spec.new do |s|
         sp.source_files = 'Classes/TimBaseListViewModel/**/*.{h,m,mm}' 
         
         sp.dependency 'TimCore/TimAFAppConnectClient'
-        # sp.dependency 'TimCore/TimAFAppConnectClient'
+        sp.dependency 'TimCore/TimProtocol'
 
         sp.dependency 'TMCache'
         sp.dependency 'ReactiveCocoa','~>2.5'

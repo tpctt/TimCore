@@ -250,6 +250,9 @@ AspectPatch(-, void, dealloc)
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     }
+    
+    [JPUSHService setBadge:[UIApplication sharedApplication].applicationIconBadgeNumber];
+    
 }
 
 
