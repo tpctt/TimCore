@@ -12,8 +12,9 @@ target:TimCoreDemo  do
     project 'TimCoreDemo/TimCoreDemo.xcodeproj'
     
     pod 'XAspect'
-    
-    
+    pod 'TimCore/TimProtocol'
+
+
 end
 
 target:TimJpushDemo  do
@@ -48,6 +49,7 @@ target:TimBaseListViewModel  do
     
     pod 'ReactiveCocoa','~>2.5'
     pod 'TimCore/TimAFAppConnectClient'
+    pod 'TimCore/TimProtocol'
     pod 'TMCache'
     
     
