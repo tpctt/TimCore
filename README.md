@@ -4,8 +4,8 @@ TimCore分为 core 核心布恩,和 TimJpush ,TimShare ,TimBaseViewModel ,TimAFA
 <li>Timcore 为其他的 module 需要的基本支持部分,基于RAC 2.5实现,主要为 OC 版本提供支持,</li>
 <li>TimJpush 简化推送的代码逻辑,这个使用的 jpush 作为拓展,只需要设置3方 sdk 的 key 和 一个 收到推送的 block 即可</li>
 <li>TimShare 简化分享的代码逻辑,这个使用的  Sharesdk 作为拓展,只需要设置 各个3方 sdk 的 key 和 一个 分享成功的回调即可</li>
-<li>TimBaseViewModel 实现基于 RAC 实现的 MVVM 网络请求方案,支持上传 key-value 数据,支持上传 图像等其他二进制数据, 返回数据支持重新处理之后才传递给下一级, 良好的支持列表数据返回,自带分页管理, 支持整体配置基本的网络访问参数,</li>
-<li>TimAFAppConnectClient 基于 AF 3.0 做的一个简化网络请求的设置模块,支持 设置 基本的数据来过滤 非正常状态码的数据,简化大量网络请求的代码</li>
+<li>TimBaseViewModel 实现基于 RAC 实现的 MVVM 网络请求方案,支持上传 key-value 数据,支持上传 图像等其他二进制数据, 返回数据支持重新处理之后才传递给下一级, 良好的支持列表数据返回,自带分页管理, 支持整体配置基本的网络访问参数, 完全解耦合多个网络请求的冲突问题</li>
+<li>TimAFAppConnectClient 基于 AF 3.0 做的一个简化网络请求的设置模块,支持 设置 基本的数据来过滤 非正常状态码的数据,简化大量网络请求的代码, 新增 DNS 处理和 https 中间人攻击校验</li>
 
 
 
