@@ -17,12 +17,6 @@ target:TimCoreDemo  do
 
 end
 
-target:TimJpushDemo  do
-project 'TimJpushDemo/TimJpushDemo.xcodeproj'   
-pod 'XAspect'
-pod 'JPush-iOS-SDK','~> 2.2.0'
-
-end
 
 
 
@@ -49,6 +43,7 @@ target:TimBaseListViewModel  do
     
     pod 'ReactiveCocoa','~>2.5'
     pod 'TimCore/TimAFAppConnectClient'
+
     pod 'TimCore/TimProtocol'
     pod 'TMCache'
     

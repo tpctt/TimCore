@@ -14,7 +14,7 @@
 
 
 @interface TimAFAppConnectClient ()
-@property (strong,nonatomic) NSMutableDictionary * allShareClient ;
+@property (strong,nonatomic) NSCache * allShareClient ;
 @property (strong,nonatomic) NSCache *netStateCache;
 
 @end
@@ -44,13 +44,11 @@ static NSString *baseUrl ;
     
     if (share == nil) {
         
-        static TimAFAppConnectClient *shareNetworkClient22;
-        
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             
             
-            shareNetworkClient22 = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+           TimAFAppConnectClient * shareNetworkClient22 = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
             shareNetworkClient22.requestSerializer = [AFHTTPRequestSerializer serializer];
             
             shareNetworkClient22.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -101,21 +99,10 @@ static NSString *baseUrl ;
         
         shareNetworkClient.responseSerializer.acceptableContentTypes =[NSSet setWithArray:@[@"text/html",@"text/plain",@"application/json"]];
         
-        //        shareNetworkClient.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD"]];
-        
-        
-        //        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate ];
-        //
-        //        securityPolicy.pinnedCertificates = [NSSet setWithObject:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"www.taoqian123.com" ofType:@"cer"]]];
-        ////        securityPolicy.validatesDomainName = NO;
-        ////        securityPolicy.allowInvalidCertificates = YES;
-        ////
-        //        shareNetworkClient.securityPolicy = securityPolicy;
-        
-        
+  
+        shareNetworkClient.allShareClient = [NSCache new];
         shareNetworkClient.netStateCache = [NSCache new];
 
-        [shareNetworkClient setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
         
         
     });

@@ -22,6 +22,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     self = [super init];
     if (self) {
         
+        [self initNetClient];
         
         [self initialize];
         [self initNetError];
@@ -30,7 +31,31 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     }
     return self;
 }
+-(void)initNetClient
+{
+    _appConnectClient =   [TimAFAppConnectClient sharedClientFor:self.baseUrl];
+    
+}
+-(void)setSucessCode:(NSInteger)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey
+{
+    [_appConnectClient setSucessCode:sucessCode statusCodeKey:statusCodeKey msgKey:msgKey responseDataKey:responseDataKey];
+}
 
+
+-(void)setBaseUrl:(NSString *)baseUrl
+{
+    
+    NSAssert(baseUrl, @"baseurl 不得为空");
+    
+    if (_baseUrl == nil) {
+        _baseUrl = baseUrl;
+    }else{
+        
+        NSParameterAssert(@"baseurl 设置之后不得修改");
+        
+    }
+    
+}
 -(void)dealloc
 {
     
@@ -40,19 +65,19 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 
 -(void)initNetError
 {
-//    @weakify(self);
+    //    @weakify(self);
     [self.command.errors subscribeNext:^(NSError *error) {
-     //   @strongify(self);
-
+        //   @strongify(self);
+        
         if (error.code == -2 ) {
             ///token 失效
-//            [[NSNotificationCenter defaultCenter]postNotificationName:TimNeedLoginNotification object:error ];
+            //            [[NSNotificationCenter defaultCenter]postNotificationName:TimNeedLoginNotification object:error ];
             
-           
+            
         }
         
     }];
-     
+    
     
 }
 #pragma mark cache
@@ -78,6 +103,21 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     self.output = dict;
     
     
+    [self dealData:dict subscriber:subscriber];
+    
+    
+    [self dealArrayToSearch:[self getSearchArray]];
+    
+    
+    if(isCache == NO){
+        [subscriber sendCompleted];
+    }
+    
+    
+}
+
+-(void)dealData:(NSDictionary *)dict subscriber:(id<RACSubscriber>) subscriber
+{
     if(self.outputBlock){
         
         [subscriber  sendNext:self.outputBlock(dict)];
@@ -88,31 +128,24 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
         [subscriber sendNext:dict];
         
     }
-    [self dealArrayToSearch:[self getSearchArray]];
-
-    if(isCache == NO){
-        [subscriber sendCompleted];
-    }
-    
-
 }
 -(void)saveJson:(id  _Nullable )json
 {
     
     if(json && self.allowCacheData == YES ){
-
+        
 #pragma warning warning
         
         //部分 json 数据不能保存,... warning ,NULL
-//        [[NSUserDefaults standardUserDefaults]setObject:json forKey:[self getCacheKey]];
-//        [[NSUserDefaults standardUserDefaults]synchronize];
+        //        [[NSUserDefaults standardUserDefaults]setObject:json forKey:[self getCacheKey]];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
         
         [[TMCache sharedCache]setObject:json forKey:[self getCacheKey]];
         
     }else{
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self getCacheKey]];
+        //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self getCacheKey]];
         [[TMCache sharedCache] removeObjectForKey:[self getCacheKey]];
-
+        
     }
     
 }
@@ -120,11 +153,11 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 -(void)getCacheData:(id<RACSubscriber>) subscriber
 {
     
-//    id tempCacheData = [[NSUserDefaults standardUserDefaults] objectForKey:[self getCacheKey]];
+    //    id tempCacheData = [[NSUserDefaults standardUserDefaults] objectForKey:[self getCacheKey]];
     
     if(self.allowCacheData){
         id tempCacheData =  [[TMCache sharedCache] objectForKey:[self getCacheKey]];
-
+        
         if(tempCacheData ){
             [self didGetData:tempCacheData subscriber:subscriber isCache:YES];
             
@@ -146,29 +179,31 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
 }
 
+///处理输入参数
+-(void)dealInputPara
+{
+    
+    self.vmPara = [[self class]addBaseInfo:self.vmPara forWeb:NO];
+    if ( self.inputBlock) {
+        self.vmPara = self.inputBlock([self.vmPara mutableCopy]);
+    }
+}
 
 #pragma mark 实现过程
-- (void)initialize{
+- (void)initialize
+{
     @weakify(self);
-
-    _appConnectClient =   [TimAFAppConnectClient sharedClient];
-
+    
+    
     self.command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
-        self.vmPara = @{}.mutableCopy;
         
         RACSignal *signal =   [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             
             @strongify(self);
-
-            self.vmPara = [[self class]addBaseInfo:self.vmPara forWeb:NO];
-            if ( self.inputBlock) {
-                self.vmPara = self.inputBlock([self.vmPara mutableCopy]);
-            }
             
+            ///检测 path 有效性
             NSAssert(self.path.length  , ([NSString stringWithFormat:@"%@ %@ path 为空",self ,self.path ]));
-            
-            
             if ( ! self.path.length) {
                 
                 return [RACDisposable disposableWithBlock:^{}];
@@ -176,32 +211,33 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
             }
             
             
-            
+            [self dealInputPara];
             [self getCacheData:subscriber];
             
+            ///网络请求
             [self.appConnectClient skPostWithMethodName:self.path param:self.vmPara constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nullable formData) {
-
-                @strongify(self);
-
-                  if (self.formDataInputBlock) {
-                      self.formDataInputBlock(formData);
-                  }
-                  
-                  
-              } progress:nil checkNullData: NO successBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json) {
                 
-                  @strongify(self);
-
-                  [self didGetData:json subscriber:subscriber isCache:NO];
-                  [self saveJson:json];
-                  
+                @strongify(self);
+                
+                if (self.formDataInputBlock) {
+                    self.formDataInputBlock(formData);
+                }
+                
+                
+            } progress:nil checkNullData: NO successBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json) {
+                
+                @strongify(self);
+                
+                [self didGetData:json subscriber:subscriber isCache:NO];
+                [self saveJson:json];
+                
                 
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
                 self.output = json;
-
+                
                 [subscriber sendError:error];
-//                [subscriber sendCompleted];
-
+                //                [subscriber sendCompleted];
+                
             }];
             
             return [RACDisposable disposableWithBlock:^{
@@ -229,51 +265,12 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     NSMutableDictionary *mParam = [[NSMutableDictionary alloc] initWithDictionary:info];
     {
         
-//        if ([TimUserObject isLoged] && [TimUserObject sharedInstance].access_token.length  ) {
-//            [mParam setObject:[TimUserObject sharedInstance].access_token forKey:@"access_token"];
-//            
-//        }
-//        if([Config sharedInstance].cityModel && [Config sharedInstance].cityModel .id ){
-//            [mParam setObject:[Config sharedInstance].cityModel .id  forKey:@"city_id"];
-//
-//        }
-//        //        front //前端类型 0=pc 1=wap 2=ios 3=android
-//        [mParam setObject:@( 2 ).stringValue forKey:@"front"];
-        
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString*  appVersion =[NSString stringWithFormat:@"%@",  [infoDict objectForKey:@"CFBundleShortVersionString"]  ];
         ///现在的app的版本
         [mParam setObject:appVersion forKey:@"version"];
-
-        
-//        if([AppDelegate shareInstance].registrationID){
-//            [mParam setObject:[AppDelegate shareInstance].registrationID forKey:@"registration_id"];
-//
-//        }
-//        if([AppDelegate shareInstance].deviceToken){
-//            [mParam setObject:[AppDelegate shareInstance].deviceToken forKey:@"deviceToken"];
-//            
-//        }
-        
-        
-        ///debug  使用,需要在一次正式版使用
-//        [mParam setObject:DEBUG?@"1":@"0" forKey:@"f"];
-#if DEBUG
-//        [mParam setObject:@"1"forKey:@"if"];
-
-#else
-        ///确认发布之后执行的为这里
-//        [mParam setObject:@"0" forKey:@"if"];
-
-#endif
-        
-  
-        
         
     }
-    
-    
-    
     
     return mParam;
 }
@@ -323,20 +320,13 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     [manager beginIndexBatch];
     [manager indexSearchableItems:seachableItems
                 completionHandler:^(NSError * __nullable error){                                                              if (error)
-                        NSLog(@"%@",error.localizedDescription);
-    
+                    NSLog(@"%@",error.localizedDescription);
+                    
                 }];
     [manager endIndexBatchWithClientState:[NSData new] completionHandler:^(NSError * _Nullable error) {
         
     }];
     
-//    
-//    [[CSSearchableIndex defaultSearchableIndex]
-//     indexSearchableItems:seachableItems
-//        completionHandler:^(NSError * __nullable error){                                                              if (error)
-//                NSLog(@"%@",error.localizedDescription);
-//                                                       
-//    }];
     
 }
 
@@ -352,6 +342,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     self = [super init];
     if (self) {
         _page = 1;
+        self.dataArray = [NSMutableArray array];
+        
     }
     return self;
 }
@@ -373,45 +365,13 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 }
 -(RACSignal*)loadPages
 {
-    
-//    NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:self.para ];
-//    
-//    [para setObject:@(_page) forKey:@"page"];
-//    
-//    self.para = para;
-//    
-    
     return  [self.command execute:nil];
-    
-    
 }
-
--(void)didGetData:(id  _Nullable )json subscriber:(id<RACSubscriber>) subscriber isCache:(BOOL)isCache
+-(void)dealData:(NSDictionary *)dict subscriber:(id<RACSubscriber>) subscriber
 {
-    
-    NSDictionary *dict = json;
-    if (!dict || ![dict isKindOfClass:[NSDictionary class]]) {
-        return;
-    }
-    NSInteger flag = [dict[_appConnectClient.statusCodeKey] integerValue];
-    NSString *msg = dict[_appConnectClient.msgKey] ;
-    self.msg = msg;
-    
-    
-    if (flag != _appConnectClient.sucessCode ) {
-        
-        [subscriber sendError:[NSError errorWithDomain:@"com.taoqian123" code:flag userInfo:@{NSLocalizedDescriptionKey:msg }]];
-        //                    [subscriber sendCompleted];
-        return;
-    }
-    
-    dict = dict[_appConnectClient.responseDataKey];
-    self.output = dict;
-    
-    
     NSArray *array = nil;
     if(self.block){
-        array= self.block( dict );
+        array = self.block( dict );
     }
     if(self.outputBlock){
         [subscriber  sendNext:self.outputBlock(dict)];
@@ -437,102 +397,37 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     self.dataArray = mArray;
     
     [subscriber sendNext:array];
-//    [self dealArrayToSearch:[self getSearchArray]];
+    
+    
     [self dealArrayToSearch:array];
+    
+    
+}
 
-    if(isCache == NO){
-        [subscriber sendCompleted];
+
+-(void)dealInputPara
+{
+    [super dealInputPara];
+    NSMutableDictionary *para = [self.vmPara mutableCopy];
+    [ para setObject:@(self.page) forKey:@"page"];
+    self.vmPara = para;
+    
+}
+-(void)getCacheData:(id<RACSubscriber>)subscriber
+{
+    if(self.page == 1){
+        ///只使用第一页缓存数据
+        [super getCacheData:subscriber];
         
     }
-    
 }
-- (void)initialize {
-    
-    self.dataArray = [NSMutableArray array];
-    
-    _appConnectClient =   [TimAFAppConnectClient sharedClient];
-
-    @weakify(self)
-    
-    self.command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self);
-        self.vmPara = @{}.mutableCopy;
-        
-        RACSignal *signal =   [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            @strongify(self);
-
-            ///
-            NSMutableDictionary *para = [[self class] addBaseInfo:self.vmPara forWeb:NO];
-            [ para setObject:@(self.page) forKey:@"page"];
-            self.vmPara = para;
-            
-            
-            
-            if ( self.inputBlock) {
-                self.vmPara = self.inputBlock([self.vmPara mutableCopy]);
-            }
-            
-            
-            if ( ! self.path.length) {
-               return [RACDisposable disposableWithBlock:^{  }];
-            }
-            
-            
-            
-            if(self.page == 1){
-                ///只使用第一页缓存数据
-                [self getCacheData:subscriber];
-            
-            }
-            
-//
-            
-            [self.appConnectClient skPostWithMethodName:self.path param:self.vmPara constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nullable formData) {
-                @strongify(self);
-                
-                if (self.formDataInputBlock) {
-                    self.formDataInputBlock(formData);
-                }
-                
-            } progress:nil checkNullData:NO    successBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json) {
-                
-                
-                      @strongify(self);
-
-                      [self didGetData:json subscriber:subscriber isCache:NO];
-                      if(self.page == 1){
-//                          只缓存第一页数据
-                          [self saveJson:json];
-                      }
-                                                          
-            } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
-                self.output = json;
-
-                [subscriber sendError:error];
-//                [subscriber sendCompleted];
-                
-                
-                
-            }];
-            
-            return [RACDisposable disposableWithBlock:^{
-                
-            }];
-            
-        }]setNameWithFormat:@"vm_list_skPostWithMethodName-%@",self.path];
-        
-        
-        return signal;
-        
-        
-        
-    }];
-    
-  
-    
-    
+-(void)saveJson:(id)json
+{
+    if(self.page == 1){
+        //     只缓存第一页数据
+        [super saveJson:json];
+    }
 }
-
 
 
 

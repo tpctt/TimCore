@@ -38,6 +38,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 
 @property (nonatomic, assign ) BOOL allowCacheData;
 @property (nonatomic, strong,readonly ) TimAFAppConnectClient *_Nullable appConnectClient;
+@property (nonatomic, strong,readonly) NSString * _Nonnull baseUrl;///基本的 url
 
 
 - (void)initialize ;
@@ -46,10 +47,19 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 ///cache
 -(void)didGetData:(id  _Nullable )json subscriber:(id<RACSubscriber>_Nullable) subscriber isCache:(BOOL)isCache;
 -(NSString *_Nullable)getCacheKey;
+///处理输入参数
+-(void)dealInputPara;
+//cache
+-(void)getCacheData:(id<RACSubscriber>_Nullable) subscriber;
+-(void)saveJson:(id  _Nullable )json;
+
 
 ///spot
 -(NSArray *_Nullable)getSearchArray;
 -(void)dealArrayToSearch:(NSArray *_Nullable)array;
+
+//network
+-(void)setSucessCode:(NSInteger)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey;
 
 @end
 
