@@ -15,7 +15,6 @@
 
 @interface TimAFAppConnectClient ()
 @property (strong,nonatomic) NSMutableDictionary * allShareClient ;
-@property (strong,nonatomic) NSCache *netStateCache;
 
 @end
 
@@ -74,8 +73,6 @@ static NSString *baseUrl ;
             
             [allShare.allShareClient setObject:share forKey:baseUrl];
             
-            share.netStateCache = [NSCache new];
-
         });
         
         
@@ -113,8 +110,7 @@ static NSString *baseUrl ;
         //        shareNetworkClient.securityPolicy = securityPolicy;
         
         
-        shareNetworkClient.netStateCache = [NSCache new];
-
+        
         [shareNetworkClient setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
         
         
@@ -438,8 +434,6 @@ static NSString *baseUrl ;
                else {
                    if (failedBlock) {
                        NSString *msg = [jsonDic objectForKey:_msgKey];
-                       msg = msg?:@"";
-                       
                        NSDictionary* errorMessage = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
                        
                        failedBlock(task,jsonDic,SKErrorMsgTypeNoData,[NSError errorWithDomain:msg code:[code intValue] userInfo:errorMessage]);
@@ -461,245 +455,6 @@ static NSString *baseUrl ;
     
     
     
-}
-
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
-                      progress:(void (^)(NSProgress * _Nonnull))uploadProgress
-                       success:(void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
-                       failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure
-{
-    return [self POST:URLString parameters:parameters constructingBodyWithBlock:nil progress:uploadProgress success:success failure:failure];
-    
-}
-
-
-- (void)URLSession:(NSURLSession *)session
-didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
- completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
-{
-    //
-    //    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-    //    NSURLCredential *credential = nil;
-    //
-    //    disposition = NSURLSessionAuthChallengeUseCredential;
-    //    credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-    //    completionHandler(disposition, credential);
-    //    return;
-    
-    
-    NSURLSessionTask *task = nil;
-    
-    [self URLSession:session task:task didReceiveChallenge:challenge completionHandler:completionHandler];
-    
-}
-#pragma mark - NSURLSessionTaskDelegate
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler {
-    if (!challenge) {
-        return;
-    }
-    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-    NSURLCredential *credential = nil;
-    /*
-     * 获取原始域名信息。
-     */
-    BOOL useDNS = NO;
-    NSString *host = [[task.originalRequest allHTTPHeaderFields] objectForKey:@"host"];
-    if(!host){
-        host = self.baseURL.host;
-    }else{
-        useDNS = YES;
-    }
-    
-    if (!host) {
-        host = task.originalRequest.URL.host;
-    }
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        if (useDNS == NO) {
-            if ([self.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {
-                disposition = NSURLSessionAuthChallengeUseCredential;
-                credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-            } else {
-                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-            }
-        }else{
-            if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {
-                disposition = NSURLSessionAuthChallengeUseCredential;
-                credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-            } else {
-                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-            }
-        }
-        
-    } else {
-        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-    }
-    // 对于其他的challenges直接使用默认的验证方案
-    completionHandler(disposition, credential);
-}
-
-
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
-                  forDomain:(NSString *)domain {
-    /*
-     * 创建证书校验策略
-     */
-    NSMutableArray *policies = [NSMutableArray array];
-    if (domain) {
-        [policies addObject:(__bridge_transfer id) SecPolicyCreateSSL(true, (__bridge CFStringRef) domain)];
-    } else {
-        [policies addObject:(__bridge_transfer id) SecPolicyCreateBasicX509()];
-    }
-    /*
-     * 绑定校验策略到服务端的证书上
-     */
-    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef) policies);
-    /*
-     * 评估当前serverTrust是否可信任，
-     * 官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed
-     * 的情况下serverTrust可以被验证通过，https://developer.apple.com/library/ios/technotes/tn2232/_index.html
-     * 关于SecTrustResultType的详细信息请参考SecTrust.h
-     */
-    SecTrustResultType result;
-    SecTrustEvaluate(serverTrust, &result);
-    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
-}
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
-     constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-
-                      progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
-                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-{
-    return  [self POST:URLString parameters:parameters constructingBodyWithBlock:block
-          allowHTTPDNS:YES
-              progress:uploadProgress success:success failure:failure];
-    
-}
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
-     constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-                  allowHTTPDNS:(BOOL)allowHTTPDNS
-                      progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
-                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-{
-    
-    NSError *serializationError = nil;
-    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
-    
-    NSNumber *hostNum = [self.netStateCache objectForKey:self.baseURL.host];
-    //    hostNum = @1;
-    if(hostNum && [hostNum integerValue] > 2 && allowHTTPDNS ){
-        ///dns
-        NSURL *url = request.URL;
-        NSString *originalUrl = url.absoluteString;
-        
-        // 同步接口获取IP
-        NSString* ip = [self.dnsTable objectForKey:url.host];
-        //    ip = @"120.27.142.86";
-        
-        if (ip) {
-            // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-            NSRange hostFirstRange = [originalUrl rangeOfString: url.host];
-            if (NSNotFound != hostFirstRange.location) {
-                NSString* newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-                //            request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:newUrl]];
-                request.URL =[NSURL URLWithString:newUrl];
-                // 设置请求HOST字段
-                [request setValue:url.host forHTTPHeaderField:@"host"];
-            }
-        }
-        
-    }
-    
-    
-    if (serializationError) {
-        if (failure) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wgnu"
-            dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
-                failure(nil, serializationError);
-            });
-#pragma clang diagnostic pop
-        }
-        
-        return nil;
-    }
-    
-    __block NSURLSessionDataTask *task = [self uploadTaskWithStreamedRequest:request progress:uploadProgress completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
-        if (error) {
-            if(error){
-                
-                if (allowHTTPDNS == NO) {
-                    if (failure) {
-                        failure(task, error);
-                    }
-                    return ;
-                }
-                
-                
-                
-                if (error.code <= -1200 && error.code >= -2000) {
-                    ///此服务器的证书无效。您可能正在连接到一个伪装成“api.taoqian123.com”的服务器，这会威胁到您的机密信息的安全。
-                    if (failure) {
-                        failure(task, error);
-                    }
-                    return ;
-                }
-                
-                
-                
-                
-                
-                NSNumber *hostNum = [self.netStateCache objectForKey:self.baseURL.host];
-                if(hostNum )
-                {
-                    hostNum = @([hostNum integerValue]+1);
-                }else{
-                    hostNum = @1;
-                }
-                
-                [self.netStateCache setObject:hostNum forKey:self.baseURL.host];
-                
-                ///失败3次就不 repeat 网络请求
-                if(hostNum.integerValue > 3) {
-                    if (failure) {
-                        failure(task, error);
-                    }
-                }else{
-                    if([self.baseURL.host isEqualToString:task.originalRequest.URL.host] ){
-                        //REPET
-                        
-                        [self POST:URLString parameters:parameters constructingBodyWithBlock:block progress:uploadProgress success:success failure:failure];
-                        
-                    }else{
-                        if (failure) {
-                            failure(task, error);
-                        }
-                    }
-                }
-                
-                
-                
-                
-            }else{
-                if (failure) {
-                    failure(task, error);
-                }
-            }
-            
-        } else {
-            if (success) {
-                success(task, responseObject);
-            }
-        }
-    }];
-    
-    [task resume];
-    
-    return task;
 }
 
 

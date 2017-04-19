@@ -29,8 +29,6 @@ typedef NS_ENUM(NSUInteger, SKErrorMsgType) {
 @property (strong,nonatomic,readonly)    NSString* _Nonnull statusCodeKey;
 @property (strong,nonatomic,readonly)    NSString* _Nonnull msgKey;
 @property (strong,nonatomic,readonly)    NSString* _Nonnull responseDataKey;
-//httpDNS
-@property (strong,nonatomic)    NSDictionary* _Nonnull dnsTable;
 
 
 
@@ -38,7 +36,7 @@ typedef NS_ENUM(NSUInteger, SKErrorMsgType) {
 +(void)setBaseUrl:(NSString*_Nonnull)url __attribute__((deprecated("使用sharedClientFor:")));
 +(TimAFAppConnectClient * _Nonnull )sharedClient __attribute__((deprecated("使用sharedClientFor:")));
 
-+(TimAFAppConnectClient *_Nullable)sharedClientFor:(NSString *_Nonnull)baseUrl;
++(TimAFAppConnectClient *)sharedClientFor:(NSString *)baseUrl;
 
 
 /**
