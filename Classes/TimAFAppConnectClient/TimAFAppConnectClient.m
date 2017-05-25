@@ -30,6 +30,37 @@ static NSString *baseUrl ;
 
 
 #pragma mark- 单例对象，实例话
++(TimAFAppConnectClient *)appConnectClientWith:(NSString *)baseUrl
+{
+    TimAFAppConnectClient * shareNetworkClient22 = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    shareNetworkClient22.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    shareNetworkClient22.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    shareNetworkClient22.responseSerializer.acceptableContentTypes =[NSSet setWithArray:@[@"text/html",@"text/plain",@"application/json"]];
+    
+    shareNetworkClient22.netStateCache = [NSCache new];
+    shareNetworkClient22.allShareClient = [NSCache new];
+
+    
+    
+    
+    //        shareNetworkClient.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD"]];
+    
+    
+    //        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate ];
+    //
+    //        securityPolicy.pinnedCertificates = [NSSet setWithObject:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"www.taoqian123.com" ofType:@"cer"]]];
+    ////        securityPolicy.validatesDomainName = NO;
+    ////        securityPolicy.allowInvalidCertificates = YES;
+    ////
+    //        shareNetworkClient.securityPolicy = securityPolicy;
+    
+    
+    
+    return shareNetworkClient22;
+    
+}
 
 +(TimAFAppConnectClient *)sharedClientFor:(NSString *)baseUrl
 {
@@ -43,40 +74,9 @@ static NSString *baseUrl ;
     __block  TimAFAppConnectClient *share = [allShare.allShareClient objectForKey:baseUrl];
     
     if (share == nil) {
+        share = [TimAFAppConnectClient appConnectClientWith:baseUrl];
         
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            
-            
-           TimAFAppConnectClient * shareNetworkClient22 = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-            shareNetworkClient22.requestSerializer = [AFHTTPRequestSerializer serializer];
-            
-            shareNetworkClient22.responseSerializer = [AFJSONResponseSerializer serializer];
-            
-            shareNetworkClient22.responseSerializer.acceptableContentTypes =[NSSet setWithArray:@[@"text/html",@"text/plain",@"application/json"]];
-            
-            //        shareNetworkClient.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD"]];
-            
-            
-            //        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate ];
-            //
-            //        securityPolicy.pinnedCertificates = [NSSet setWithObject:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"www.taoqian123.com" ofType:@"cer"]]];
-            ////        securityPolicy.validatesDomainName = NO;
-            ////        securityPolicy.allowInvalidCertificates = YES;
-            ////
-            //        shareNetworkClient.securityPolicy = securityPolicy;
-            
-            
-            share = shareNetworkClient22;
-            shareNetworkClient22 = nil;
-            
-            [allShare.allShareClient setObject:share forKey:baseUrl];
-            
-            share.netStateCache = [NSCache new];
-
-        });
-        
-        
+        [allShare.allShareClient setObject:share forKey:baseUrl];
         
     }
     
@@ -92,17 +92,7 @@ static NSString *baseUrl ;
     dispatch_once(&onceToken, ^{
         
         
-        shareNetworkClient = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-        shareNetworkClient.requestSerializer = [AFHTTPRequestSerializer serializer];
-        
-        shareNetworkClient.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        shareNetworkClient.responseSerializer.acceptableContentTypes =[NSSet setWithArray:@[@"text/html",@"text/plain",@"application/json"]];
-        
-  
-        shareNetworkClient.allShareClient = [NSCache new];
-        shareNetworkClient.netStateCache = [NSCache new];
-
+        shareNetworkClient = [TimAFAppConnectClient appConnectClientWith:baseUrl];
         
         
     });
