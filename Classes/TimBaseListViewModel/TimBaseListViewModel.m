@@ -44,16 +44,31 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
 
 -(void)setBaseUrl:(NSString *)baseUrl
 {
-    
-    NSAssert(baseUrl, @"baseurl 不得为空");
-    
-    if (_baseUrl == nil) {
+    if (_baseUrl != baseUrl) {
         _baseUrl = baseUrl;
+        
+        TimAFAppConnectClient *preClient = _appConnectClient;
+        
+        [self initNetClient];
+        
+        [_appConnectClient setSucessCode:preClient.sucessCode
+                           statusCodeKey:preClient.statusCodeKey
+                                  msgKey:preClient.msgKey
+                         responseDataKey:preClient.responseDataKey];
+        
     }else{
-        
-        NSParameterAssert(@"baseurl 设置之后不得修改");
-        
+//        NSParameterAssert(@"baseurl 设置之后不得修改");
     }
+    
+//    NSAssert(baseUrl, @"baseurl 不得为空");
+//    
+//    if (_baseUrl == nil) {
+//        _baseUrl = baseUrl;
+//    }else{
+//        
+//        NSParameterAssert(@"baseurl 设置之后不得修改");
+//        
+//    }
     
 }
 -(void)dealloc
@@ -213,6 +228,10 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
             
             [self dealInputPara];
             [self getCacheData:subscriber];
+            
+            ///add header
+            self.appConnectClient.addHTTPHeaderFields = self.addHTTPHeaderFields;
+            
             
             ///网络请求
             [self.appConnectClient skPostWithMethodName:self.path param:self.vmPara constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nullable formData) {

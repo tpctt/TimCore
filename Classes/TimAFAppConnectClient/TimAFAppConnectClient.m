@@ -590,7 +590,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         }
         
     }
-    
+    if (self.addHTTPHeaderFields) {
+        [request setValuesForKeysWithDictionary:self.addHTTPHeaderFields];
+        
+    }
     
     if (serializationError) {
         if (failure) {

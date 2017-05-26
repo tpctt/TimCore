@@ -31,6 +31,8 @@ typedef NS_ENUM(NSUInteger, SKErrorMsgType) {
 @property (strong,nonatomic,readonly)    NSString* _Nonnull responseDataKey;
 //httpDNS
 @property (strong,nonatomic)    NSDictionary* _Nonnull dnsTable;
+///addHTTPHeaderFields
+@property (strong,nonatomic)    NSDictionary<NSString *, NSString *> * _Nullable addHTTPHeaderFields;
 
 
 
