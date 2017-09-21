@@ -45,7 +45,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 
 
 
-- (void)initialize ;
+- (void)initialize NS_REQUIRES_SUPER;
 
 +(NSMutableDictionary* _Nonnull)addBaseInfo:(NSDictionary* _Nullable)info forWeb:(BOOL)forWeb;
 
