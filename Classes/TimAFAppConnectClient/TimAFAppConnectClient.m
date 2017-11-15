@@ -591,7 +591,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         
     }
     if (self.addHTTPHeaderFields) {
-        [request setValuesForKeysWithDictionary:self.addHTTPHeaderFields];
+        NSMutableDictionary *headerFields =[request.allHTTPHeaderFields mutableCopy];
+        [headerFields addEntriesFromDictionary:self.addHTTPHeaderFields];
+        
+        request.allHTTPHeaderFields = headerFields;
         
     }
     
