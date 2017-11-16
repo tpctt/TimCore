@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "79A077E6DDC54E4E840437427C242474088014FB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "690C34FCF660E94567FF7293A7AAAFF123560B10" : 9223372036854775807,
+    "79A077E6DDC54E4E840437427C242474088014FB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "615D867E-8614-48EE-965A-500890EBFFCD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "690C34FCF660E94567FF7293A7AAAFF123560B10" : "..\/taoqianbao-iOS-code",
+    "79A077E6DDC54E4E840437427C242474088014FB" : "TimCore\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TimCoreDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TimCoreDemo\/TimCoreDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.1.254:3000\/gogs\/taoqian123_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "690C34FCF660E94567FF7293A7AAAFF123560B10"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/timRabbit\/TimCore.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "79A077E6DDC54E4E840437427C242474088014FB"
+    }
+  ]
+}

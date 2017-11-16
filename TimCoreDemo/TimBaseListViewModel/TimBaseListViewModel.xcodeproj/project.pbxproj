@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		222292941EA7433800C32074 /* TQBCheckViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 222292931EA7433800C32074 /* TQBCheckViewModel.m */; };
+		222292971EA743BC00C32074 /* BaseListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 222292961EA743BC00C32074 /* BaseListViewModel.m */; };
+		222A70081EEFE5100082A05B /* TimBaseListViewModelFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 222A70061EEFE5100082A05B /* TimBaseListViewModelFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		222A700B1EEFE5100082A05B /* TimBaseListViewModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222A70041EEFE5100082A05B /* TimBaseListViewModel.framework */; };
+		222A700C1EEFE5100082A05B /* TimBaseListViewModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 222A70041EEFE5100082A05B /* TimBaseListViewModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		222A70111EEFE51B0082A05B /* TimBaseListViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 224DC1811DDDA1540084CBC5 /* TimBaseListViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		222A70121EEFE51B0082A05B /* TimBaseListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 224DC1821DDDA1540084CBC5 /* TimBaseListViewModel.m */; };
+		224DC1961DDDA1540084CBC5 /* TimBaseListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 224DC1821DDDA1540084CBC5 /* TimBaseListViewModel.m */; };
+		229B1DFE1ED80BF900FB0891 /* AgentTypeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 229B1DFD1ED80BF900FB0891 /* AgentTypeViewModel.m */; };
+		22A568921DDD6DBE006032B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A568911DDD6DBE006032B5 /* main.m */; };
+		22A568951DDD6DBE006032B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A568941DDD6DBE006032B5 /* AppDelegate.m */; };
+		22A568981DDD6DBE006032B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A568971DDD6DBE006032B5 /* ViewController.m */; };
+		22A5689B1DDD6DBE006032B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A568991DDD6DBE006032B5 /* Main.storyboard */; };
+		22A5689D1DDD6DBE006032B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A5689C1DDD6DBE006032B5 /* Assets.xcassets */; };
+		22A568A01DDD6DBE006032B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A5689E1DDD6DBE006032B5 /* LaunchScreen.storyboard */; };
+		44BBFBF90CB24463AFD631DD /* libPods-TimBaseListViewModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21E024B45D074FFD46CD9F /* libPods-TimBaseListViewModel.a */; };
+		66A402ED9498A95DD8D1BCA7 /* libPods-TimBaseListViewModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21E024B45D074FFD46CD9F /* libPods-TimBaseListViewModel.a */; };
+		72B87375A2E083409F532236 /* libPods-TimBaseListViewModelDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1961353A04ABEA27F748396 /* libPods-TimBaseListViewModelDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		222A70091EEFE5100082A05B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22A568851DDD6DBE006032B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 222A70031EEFE5100082A05B;
+			remoteInfo = TimBaseListViewModel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		222A70101EEFE5100082A05B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				222A700C1EEFE5100082A05B /* TimBaseListViewModel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0AE24593B615830FBD27664D /* Pods-TimBaseListViewModelDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimBaseListViewModelDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TimBaseListViewModelDemo/Pods-TimBaseListViewModelDemo.release.xcconfig"; sourceTree = "<group>"; };
+		222292921EA7433800C32074 /* TQBCheckViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQBCheckViewModel.h; sourceTree = "<group>"; };
+		222292931EA7433800C32074 /* TQBCheckViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQBCheckViewModel.m; sourceTree = "<group>"; };
+		222292951EA743BC00C32074 /* BaseListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseListViewModel.h; sourceTree = "<group>"; };
+		222292961EA743BC00C32074 /* BaseListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseListViewModel.m; sourceTree = "<group>"; };
+		222A70041EEFE5100082A05B /* TimBaseListViewModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimBaseListViewModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		222A70061EEFE5100082A05B /* TimBaseListViewModelFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimBaseListViewModelFramework.h; sourceTree = "<group>"; };
+		222A70071EEFE5100082A05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		224DC1811DDDA1540084CBC5 /* TimBaseListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimBaseListViewModel.h; sourceTree = "<group>"; };
+		224DC1821DDDA1540084CBC5 /* TimBaseListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimBaseListViewModel.m; sourceTree = "<group>"; };
+		229B1DFC1ED80BF900FB0891 /* AgentTypeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentTypeViewModel.h; sourceTree = "<group>"; };
+		229B1DFD1ED80BF900FB0891 /* AgentTypeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTypeViewModel.m; sourceTree = "<group>"; };
+		22A5688D1DDD6DBE006032B5 /* TimBaseListViewModelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimBaseListViewModelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A568911DDD6DBE006032B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22A568931DDD6DBE006032B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		22A568941DDD6DBE006032B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		22A568961DDD6DBE006032B5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		22A568971DDD6DBE006032B5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		22A5689A1DDD6DBE006032B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		22A5689C1DDD6DBE006032B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22A5689F1DDD6DBE006032B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		22A568A11DDD6DBE006032B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF8B1A949B37F33F49F49795 /* Pods-TimBaseListViewModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimBaseListViewModel.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TimBaseListViewModel/Pods-TimBaseListViewModel.release.xcconfig"; sourceTree = "<group>"; };
+		B1961353A04ABEA27F748396 /* libPods-TimBaseListViewModelDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimBaseListViewModelDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5C94FBA35247BFE5C4D171 /* Pods-TimBaseListViewModelDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimBaseListViewModelDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TimBaseListViewModelDemo/Pods-TimBaseListViewModelDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EF21E024B45D074FFD46CD9F /* libPods-TimBaseListViewModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimBaseListViewModel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F15E63866E43462DEA14CBB2 /* Pods-TimBaseListViewModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimBaseListViewModel.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TimBaseListViewModel/Pods-TimBaseListViewModel.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		222A70001EEFE5100082A05B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44BBFBF90CB24463AFD631DD /* libPods-TimBaseListViewModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A5688A1DDD6DBE006032B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A402ED9498A95DD8D1BCA7 /* libPods-TimBaseListViewModel.a in Frameworks */,
+				222A700B1EEFE5100082A05B /* TimBaseListViewModel.framework in Frameworks */,
+				72B87375A2E083409F532236 /* libPods-TimBaseListViewModelDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		222A70051EEFE5100082A05B /* TimBaseListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				222A70061EEFE5100082A05B /* TimBaseListViewModelFramework.h */,
+				222A70071EEFE5100082A05B /* Info.plist */,
+			);
+			path = TimBaseListViewModel;
+			sourceTree = "<group>";
+		};
+		224DC17C1DDDA1540084CBC5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				224DC1801DDDA1540084CBC5 /* TimBaseListViewModel */,
+			);
+			name = Classes;
+			path = ../../Classes;
+			sourceTree = "<group>";
+		};
+		224DC1801DDDA1540084CBC5 /* TimBaseListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				224DC1811DDDA1540084CBC5 /* TimBaseListViewModel.h */,
+				224DC1821DDDA1540084CBC5 /* TimBaseListViewModel.m */,
+			);
+			path = TimBaseListViewModel;
+			sourceTree = "<group>";
+		};
+		22A568841DDD6DBE006032B5 = {
+			isa = PBXGroup;
+			children = (
+				224DC17C1DDDA1540084CBC5 /* Classes */,
+				22A5688F1DDD6DBE006032B5 /* TimBaseListViewModelDemo */,
+				222A70051EEFE5100082A05B /* TimBaseListViewModel */,
+				22A5688E1DDD6DBE006032B5 /* Products */,
+				D858DA75F2660A3B917A9D24 /* Pods */,
+				464FB6B433738C75D643AD0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		22A5688E1DDD6DBE006032B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22A5688D1DDD6DBE006032B5 /* TimBaseListViewModelDemo.app */,
+				222A70041EEFE5100082A05B /* TimBaseListViewModel.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22A5688F1DDD6DBE006032B5 /* TimBaseListViewModelDemo */ = {
+			isa = PBXGroup;
+			children = (
+				22A568931DDD6DBE006032B5 /* AppDelegate.h */,
+				22A568941DDD6DBE006032B5 /* AppDelegate.m */,
+				22A568961DDD6DBE006032B5 /* ViewController.h */,
+				22A568971DDD6DBE006032B5 /* ViewController.m */,
+				222292951EA743BC00C32074 /* BaseListViewModel.h */,
+				222292961EA743BC00C32074 /* BaseListViewModel.m */,
+				222292921EA7433800C32074 /* TQBCheckViewModel.h */,
+				222292931EA7433800C32074 /* TQBCheckViewModel.m */,
+				229B1DFC1ED80BF900FB0891 /* AgentTypeViewModel.h */,
+				229B1DFD1ED80BF900FB0891 /* AgentTypeViewModel.m */,
+				22A568991DDD6DBE006032B5 /* Main.storyboard */,
+				22A5689C1DDD6DBE006032B5 /* Assets.xcassets */,
+				22A5689E1DDD6DBE006032B5 /* LaunchScreen.storyboard */,
+				22A568A11DDD6DBE006032B5 /* Info.plist */,
+				22A568901DDD6DBE006032B5 /* Supporting Files */,
+			);
+			name = TimBaseListViewModelDemo;
+			path = TimBaseListViewModel;
+			sourceTree = "<group>";
+		};
+		22A568901DDD6DBE006032B5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22A568911DDD6DBE006032B5 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		464FB6B433738C75D643AD0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF21E024B45D074FFD46CD9F /* libPods-TimBaseListViewModel.a */,
+				B1961353A04ABEA27F748396 /* libPods-TimBaseListViewModelDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D858DA75F2660A3B917A9D24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F15E63866E43462DEA14CBB2 /* Pods-TimBaseListViewModel.debug.xcconfig */,
+				AF8B1A949B37F33F49F49795 /* Pods-TimBaseListViewModel.release.xcconfig */,
+				CA5C94FBA35247BFE5C4D171 /* Pods-TimBaseListViewModelDemo.debug.xcconfig */,
+				0AE24593B615830FBD27664D /* Pods-TimBaseListViewModelDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		222A70011EEFE5100082A05B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				222A70081EEFE5100082A05B /* TimBaseListViewModelFramework.h in Headers */,
+				222A70111EEFE51B0082A05B /* TimBaseListViewModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		222A70031EEFE5100082A05B /* TimBaseListViewModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 222A700D1EEFE5100082A05B /* Build configuration list for PBXNativeTarget "TimBaseListViewModel" */;
+			buildPhases = (
+				E76D8D7AC67BAD3B48A6A778 /* [CP] Check Pods Manifest.lock */,
+				222A6FFF1EEFE5100082A05B /* Sources */,
+				222A70001EEFE5100082A05B /* Frameworks */,
+				222A70011EEFE5100082A05B /* Headers */,
+				222A70021EEFE5100082A05B /* Resources */,
+				809A633660365BB48D0C1D9C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimBaseListViewModel;
+			productName = TimBaseListViewModel;
+			productReference = 222A70041EEFE5100082A05B /* TimBaseListViewModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		22A5688C1DDD6DBE006032B5 /* TimBaseListViewModelDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22A568A41DDD6DBE006032B5 /* Build configuration list for PBXNativeTarget "TimBaseListViewModelDemo" */;
+			buildPhases = (
+				1DC50ED72D00E47FF1F29C6A /* [CP] Check Pods Manifest.lock */,
+				22A568891DDD6DBE006032B5 /* Sources */,
+				22A5688A1DDD6DBE006032B5 /* Frameworks */,
+				22A5688B1DDD6DBE006032B5 /* Resources */,
+				F0C701613BE111FB6E16A278 /* [CP] Embed Pods Frameworks */,
+				8650551BCED126C5FE923A1F /* [CP] Copy Pods Resources */,
+				222A70101EEFE5100082A05B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				222A700A1EEFE5100082A05B /* PBXTargetDependency */,
+			);
+			name = TimBaseListViewModelDemo;
+			productName = TimBaseListViewModel;
+			productReference = 22A5688D1DDD6DBE006032B5 /* TimBaseListViewModelDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22A568851DDD6DBE006032B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = timRabbit;
+				TargetAttributes = {
+					222A70031EEFE5100082A05B = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = TGZ32BA6KS;
+						ProvisioningStyle = Automatic;
+					};
+					22A5688C1DDD6DBE006032B5 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TGZ32BA6KS;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 22A568881DDD6DBE006032B5 /* Build configuration list for PBXProject "TimBaseListViewModel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 22A568841DDD6DBE006032B5;
+			productRefGroup = 22A5688E1DDD6DBE006032B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22A5688C1DDD6DBE006032B5 /* TimBaseListViewModelDemo */,
+				222A70031EEFE5100082A05B /* TimBaseListViewModel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		222A70021EEFE5100082A05B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A5688B1DDD6DBE006032B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A568A01DDD6DBE006032B5 /* LaunchScreen.storyboard in Resources */,
+				22A5689D1DDD6DBE006032B5 /* Assets.xcassets in Resources */,
+				22A5689B1DDD6DBE006032B5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DC50ED72D00E47FF1F29C6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimBaseListViewModelDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		809A633660365BB48D0C1D9C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TimBaseListViewModel/Pods-TimBaseListViewModel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8650551BCED126C5FE923A1F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TimBaseListViewModelDemo/Pods-TimBaseListViewModelDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E76D8D7AC67BAD3B48A6A778 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimBaseListViewModel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0C701613BE111FB6E16A278 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TimBaseListViewModelDemo/Pods-TimBaseListViewModelDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		222A6FFF1EEFE5100082A05B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				222A70121EEFE51B0082A05B /* TimBaseListViewModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22A568891DDD6DBE006032B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A568981DDD6DBE006032B5 /* ViewController.m in Sources */,
+				224DC1961DDDA1540084CBC5 /* TimBaseListViewModel.m in Sources */,
+				222292941EA7433800C32074 /* TQBCheckViewModel.m in Sources */,
+				22A568951DDD6DBE006032B5 /* AppDelegate.m in Sources */,
+				22A568921DDD6DBE006032B5 /* main.m in Sources */,
+				229B1DFE1ED80BF900FB0891 /* AgentTypeViewModel.m in Sources */,
+				222292971EA743BC00C32074 /* BaseListViewModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		222A700A1EEFE5100082A05B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 222A70031EEFE5100082A05B /* TimBaseListViewModel */;
+			targetProxy = 222A70091EEFE5100082A05B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		22A568991DDD6DBE006032B5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22A5689A1DDD6DBE006032B5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		22A5689E1DDD6DBE006032B5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22A5689F1DDD6DBE006032B5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		222A700E1EEFE5100082A05B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F15E63866E43462DEA14CBB2 /* Pods-TimBaseListViewModel.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TGZ32BA6KS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TimBaseListViewModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nothing.TimBaseListViewModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		222A700F1EEFE5100082A05B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF8B1A949B37F33F49F49795 /* Pods-TimBaseListViewModel.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TGZ32BA6KS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TimBaseListViewModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nothing.TimBaseListViewModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		22A568A21DDD6DBE006032B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		22A568A31DDD6DBE006032B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		22A568A51DDD6DBE006032B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA5C94FBA35247BFE5C4D171 /* Pods-TimBaseListViewModelDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TGZ32BA6KS;
+				INFOPLIST_FILE = TimBaseListViewModel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.timRabbit.TimBaseListViewModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		22A568A61DDD6DBE006032B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AE24593B615830FBD27664D /* Pods-TimBaseListViewModelDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TGZ32BA6KS;
+				INFOPLIST_FILE = TimBaseListViewModel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.timRabbit.TimBaseListViewModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		222A700D1EEFE5100082A05B /* Build configuration list for PBXNativeTarget "TimBaseListViewModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				222A700E1EEFE5100082A05B /* Debug */,
+				222A700F1EEFE5100082A05B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22A568881DDD6DBE006032B5 /* Build configuration list for PBXProject "TimBaseListViewModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A568A21DDD6DBE006032B5 /* Debug */,
+				22A568A31DDD6DBE006032B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22A568A41DDD6DBE006032B5 /* Build configuration list for PBXNativeTarget "TimBaseListViewModelDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22A568A51DDD6DBE006032B5 /* Debug */,
+				22A568A61DDD6DBE006032B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22A568851DDD6DBE006032B5 /* Project object */;
+}
