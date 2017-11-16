@@ -33,7 +33,8 @@ static NSString *baseUrl ;
 +(TimAFAppConnectClient *)appConnectClientWith:(NSString *)baseUrl
 {
     TimAFAppConnectClient * shareNetworkClient22 = [[TimAFAppConnectClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-    shareNetworkClient22.requestSerializer = [AFHTTPRequestSerializer serializer];
+    shareNetworkClient22.requestSerializer = [AFJSONRequestSerializer serializer];
+
     
     shareNetworkClient22.responseSerializer = [AFJSONResponseSerializer serializer];
     
@@ -124,7 +125,7 @@ static NSString *baseUrl ;
  *  @param msgKey  返回 msg 的 key
  *  @param responseDataKey   返回内容的 key
  */
--(void)setSucessCode:(NSInteger)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey
+-(void)setSucessCode:(NSString *)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey
 {
     _sucessCode = sucessCode;
     
@@ -195,7 +196,7 @@ static NSString *baseUrl ;
             NSString *code = [jsonDic objectForKey:_statusCodeKey];
             
             //成功
-            if (code && [code integerValue] == _sucessCode ) {
+            if (code && [code isEqualToString: _sucessCode] ) {
                 if (checkNullData) {
                     id dataObj = [jsonDic objectForKey:_responseDataKey];
                     
@@ -303,7 +304,7 @@ static NSString *baseUrl ;
             NSString *code = [jsonDic objectForKey:_statusCodeKey];
             
             //成功
-            if (code && [code integerValue] == _sucessCode ) {
+            if (code && [code isEqualToString: _sucessCode]  ) {
                 if (checkNullData) {
                     id dataObj = [jsonDic objectForKey:_responseDataKey];
                     
@@ -390,7 +391,7 @@ static NSString *baseUrl ;
                NSString *code = [jsonDic objectForKey:_statusCodeKey];
                
                //成功
-               if (code && [code integerValue] == _sucessCode ) {
+               if (code && [code isEqualToString: _sucessCode] ) {
                    if (checkNullData) {
                        id dataObj = [jsonDic objectForKey:_responseDataKey];
                        
@@ -564,7 +565,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     
     NSError *serializationError = nil;
-    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    NSMutableURLRequest *request = nil;
+    if ([self.requestSerializer isKindOfClass:[AFJSONRequestSerializer class]]) {
+        request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
+    }else{
+        request =  [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    }
+    
     
     NSNumber *hostNum = [self.netStateCache objectForKey:self.baseURL.host];
     //    hostNum = @1;
@@ -590,8 +597,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         }
         
     }
+    
     if (self.addHTTPHeaderFields) {
-        [request setValuesForKeysWithDictionary:self.addHTTPHeaderFields];
+        NSMutableDictionary *headerFields =[request.allHTTPHeaderFields mutableCopy];
+        [headerFields addEntriesFromDictionary:self.addHTTPHeaderFields];
+        
+        request.allHTTPHeaderFields = headerFields;
         
     }
     

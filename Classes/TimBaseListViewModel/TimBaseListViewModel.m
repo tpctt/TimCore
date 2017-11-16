@@ -36,7 +36,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     _appConnectClient =   [TimAFAppConnectClient sharedClientFor:self.baseUrl];
     
 }
--(void)setSucessCode:(NSInteger)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey
+-(void)setSucessCode:(NSString *)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey
 {
     [_appConnectClient setSucessCode:sucessCode statusCodeKey:statusCodeKey msgKey:msgKey responseDataKey:responseDataKey];
 }
@@ -102,20 +102,19 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     if (!dict || ![dict isKindOfClass:[NSDictionary class]]) {
         return;
     }
-    NSInteger flag = [dict[_appConnectClient.statusCodeKey] integerValue];
+    NSString *code = dict[_appConnectClient.statusCodeKey];
     NSString *msg = dict[_appConnectClient.msgKey] ;
     self.msg = msg;
     
     
-    if (flag != _appConnectClient.sucessCode ) {
+    if ( NO == [code isEqualToString: _appConnectClient.sucessCode] ) {
         
-        [subscriber sendError:[NSError errorWithDomain:@"com.taoqian123" code:flag userInfo:@{NSLocalizedDescriptionKey:msg }]];
+        [subscriber sendError:[NSError errorWithDomain:@"com.taoqian123" code:[code intValue] userInfo:@{NSLocalizedDescriptionKey:msg }]];
         //                    [subscriber sendCompleted];
         return;
     }
     
     dict = dict[_appConnectClient.responseDataKey];
-    self.output = dict;
     
     
     [self dealData:dict subscriber:subscriber];
@@ -247,10 +246,12 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                 
                 @strongify(self);
                 
+                self.output = json;
+
                 [self didGetData:json subscriber:subscriber isCache:NO];
                 [self saveJson:json];
                 
-                
+
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
                 self.output = json;
                 

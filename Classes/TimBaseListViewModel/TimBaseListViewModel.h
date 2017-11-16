@@ -65,7 +65,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 -(void)dealArrayToSearch:(NSArray *_Nullable)array;
 
 //network
--(void)setSucessCode:(NSInteger)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey;
+-(void)setSucessCode:(NSString *)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey;
 
 
 
