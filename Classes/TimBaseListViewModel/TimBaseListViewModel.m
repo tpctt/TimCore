@@ -133,8 +133,11 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
     
 }
--(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache
-{}
+-(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache error:(NSError * _Nullable )error
+{
+    [subscriber sendError:error];
+
+}
 -(void)dealData:(NSDictionary *)dict subscriber:(id<RACSubscriber>) subscriber
 {
     if(self.outputBlock){
@@ -257,8 +260,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                 
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
                 self.output = json;
-                [self didFailGetData:json subscriber:subscriber isCache:NO];
-                [subscriber sendError:error];
+                [self didFailGetData:json subscriber:subscriber isCache:NO error:error];
+//                [subscriber sendError:error];
                 //                [subscriber sendCompleted];
                 
             }];

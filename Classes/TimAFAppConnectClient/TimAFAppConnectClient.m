@@ -43,7 +43,7 @@ static NSString *baseUrl ;
     shareNetworkClient22.netStateCache = [NSCache new];
     shareNetworkClient22.allShareClient = [NSCache new];
 
-    
+    shareNetworkClient22.HTTPMEHHOD = @"POST";
     
     
     //        shareNetworkClient.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET", @"HEAD"]];
@@ -222,8 +222,16 @@ static NSString *baseUrl ;
             }
             else {
                 if (failedBlock) {
-                    failedBlock(task,jsonDic,SKErrorMsgTypeNoData,nil);
+                    NSString *msg = [jsonDic objectForKey:_msgKey];
+                    msg = msg?:@"";
+                    
+                    NSDictionary* errorMessage = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+                    
+                    failedBlock(task,responseObject,SKErrorMsgTypeNoData,[NSError errorWithDomain:msg code:[code intValue] userInfo:errorMessage]);
+                    //                       failedBlock(task,jsonDic,SKErrorMsgTypeNoData,nil);
+                    
                 }
+            
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -572,7 +580,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     
     NSError *serializationError = nil;
     NSMutableURLRequest *request = nil;
-    NSString *requestWithMethod = @"POST";
+    NSString *requestWithMethod = self.HTTPMEHHOD;
     
     if ([self.requestSerializer isKindOfClass:[AFJSONRequestSerializer class]] ||
         [self.requestSerializer.HTTPMethodsEncodingParametersInURI containsObject:[requestWithMethod uppercaseString]] )
@@ -615,6 +623,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         request.allHTTPHeaderFields = headerFields;
         
     }
+    request.HTTPMethod = self.HTTPMEHHOD;
+    
     
     if (serializationError) {
         if (failure) {

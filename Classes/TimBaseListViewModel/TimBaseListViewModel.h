@@ -51,7 +51,7 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 
 ///cache
 -(void)didGetData:(id  _Nullable )json subscriber:(id<RACSubscriber>_Nullable) subscriber isCache:(BOOL)isCache;
--(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache;
+-(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache error:(NSError * _Nullable )error;
 
 -(NSString *_Nullable)getCacheKey;
 
