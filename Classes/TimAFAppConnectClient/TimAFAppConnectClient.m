@@ -194,7 +194,9 @@ static NSString *baseUrl ;
             jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             
             NSString *code = [jsonDic objectForKey:_statusCodeKey];
-            
+            if ([code isKindOfClass:[NSNumber class]]) {
+                code = [(NSNumber *)code stringValue];
+            }
             //成功
             if (code && [code isEqualToString: _sucessCode] ) {
                 if (checkNullData) {
@@ -302,7 +304,9 @@ static NSString *baseUrl ;
             //            DLog(@"jsonDic:%@",jsonDic);
             
             NSString *code = [jsonDic objectForKey:_statusCodeKey];
-            
+            if ([code isKindOfClass:[NSNumber class]]) {
+                code = [(NSNumber *)code stringValue];
+            }
             //成功
             if (code && [code isEqualToString: _sucessCode]  ) {
                 if (checkNullData) {
@@ -389,7 +393,9 @@ static NSString *baseUrl ;
                //               DLog(@"jsonDic:%@",jsonDic);
                
                NSString *code = [jsonDic objectForKey:_statusCodeKey];
-               
+               if ([code isKindOfClass:[NSNumber class]]) {
+                   code = [(NSNumber *)code stringValue];
+               }
                //成功
                if (code && [code isEqualToString: _sucessCode] ) {
                    if (checkNullData) {
@@ -420,7 +426,7 @@ static NSString *baseUrl ;
                        
                        NSDictionary* errorMessage = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
                        
-                       failedBlock(task,jsonDic,SKErrorMsgTypeNoData,[NSError errorWithDomain:msg code:[code intValue] userInfo:errorMessage]);
+                       failedBlock(task,responseObject,SKErrorMsgTypeNoData,[NSError errorWithDomain:msg code:[code intValue] userInfo:errorMessage]);
                        //                       failedBlock(task,jsonDic,SKErrorMsgTypeNoData,nil);
                        
                    }
@@ -566,12 +572,16 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     
     NSError *serializationError = nil;
     NSMutableURLRequest *request = nil;
-    if ([self.requestSerializer isKindOfClass:[AFJSONRequestSerializer class]]) {
-        request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
-    }else{
-        request =  [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
-    }
+    NSString *requestWithMethod = @"POST";
     
+    if ([self.requestSerializer isKindOfClass:[AFJSONRequestSerializer class]] ||
+        [self.requestSerializer.HTTPMethodsEncodingParametersInURI containsObject:[requestWithMethod uppercaseString]] )
+    {
+        request = [self.requestSerializer requestWithMethod:requestWithMethod URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
+    }else{
+        request =  [self.requestSerializer multipartFormRequestWithMethod:requestWithMethod URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    }
+
     
     NSNumber *hostNum = [self.netStateCache objectForKey:self.baseURL.host];
     //    hostNum = @1;

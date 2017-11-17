@@ -103,6 +103,9 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
         return;
     }
     NSString *code = dict[_appConnectClient.statusCodeKey];
+    if ([code isKindOfClass:[NSNumber class]]) {
+        code = [(NSNumber *)code stringValue];
+    }
     NSString *msg = dict[_appConnectClient.msgKey] ;
     self.msg = msg;
     
@@ -115,6 +118,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     }
     
     dict = dict[_appConnectClient.responseDataKey];
+    self.output = dict;
     
     
     [self dealData:dict subscriber:subscriber];
@@ -129,7 +133,8 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
     
 }
-
+-(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache
+{}
 -(void)dealData:(NSDictionary *)dict subscriber:(id<RACSubscriber>) subscriber
 {
     if(self.outputBlock){
@@ -246,15 +251,13 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
                 
                 @strongify(self);
                 
-                self.output = json;
-
                 [self didGetData:json subscriber:subscriber isCache:NO];
                 [self saveJson:json];
                 
-
+                
             } failedBlock:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable json, SKErrorMsgType errorType, NSError * _Nullable error) {
                 self.output = json;
-                
+                [self didFailGetData:json subscriber:subscriber isCache:NO];
                 [subscriber sendError:error];
                 //                [subscriber sendCompleted];
                 

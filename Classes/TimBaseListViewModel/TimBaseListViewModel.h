@@ -45,12 +45,14 @@ typedef void(^RACCommandFormDdataInput)(id <AFMultipartFormData>  _Nullable form
 
 
 
-- (void)initialize NS_REQUIRES_SUPER;
+- (void)initialize ;
 
 +(NSMutableDictionary* _Nonnull)addBaseInfo:(NSDictionary* _Nullable)info forWeb:(BOOL)forWeb;
 
 ///cache
 -(void)didGetData:(id  _Nullable )json subscriber:(id<RACSubscriber>_Nullable) subscriber isCache:(BOOL)isCache;
+-(void)didFailGetData:(id)json subscriber:(id<RACSubscriber>)subscriber isCache:(BOOL)isCache;
+
 -(NSString *_Nullable)getCacheKey;
 
 ///处理输入参数
