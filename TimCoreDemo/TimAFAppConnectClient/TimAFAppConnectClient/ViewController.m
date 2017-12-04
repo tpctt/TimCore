@@ -26,7 +26,7 @@
     TimAFAppConnectClient *share3 = [TimAFAppConnectClient sharedClientFor:@"https://api.taoqian123.com/v1/"];
 
     {
-        [share setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
+        [share setSucessCode:@"1" statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
         
         share.dnsTable = @{@"api.taoqian123.com":@"120.27.142.86"};
         
@@ -43,7 +43,7 @@
     }
     
     {
-        [share2 setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
+        [share2 setSucessCode:@"1" statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
         
 //        share2.dnsTable = @{@"api.taoqian123.com":@"120.27.142.86"};
         
