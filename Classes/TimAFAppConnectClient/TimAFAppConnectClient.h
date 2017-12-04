@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, SKErrorMsgType) {
 
 @interface TimAFAppConnectClient : AFHTTPSessionManager
 //解析的状态值
-@property (assign,nonatomic,readonly)    NSString*   sucessCode;
+@property (assign,nonatomic,readonly)    NSString* _Nonnull sucessCode;
 @property (strong,nonatomic,readonly)    NSString* _Nonnull statusCodeKey;
 @property (strong,nonatomic,readonly)    NSString* _Nonnull msgKey;
 @property (strong,nonatomic,readonly)    NSString* _Nonnull responseDataKey;
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, SKErrorMsgType) {
  *  @param msgKey  返回 msg 的 key
  *  @param responseDataKey   返回内容的 key
  */
--(void)setSucessCode:(NSString *)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey;
+-(void)setSucessCode:(NSString *_Nonnull)sucessCode statusCodeKey:(NSString *_Nonnull)statusCodeKey msgKey:(NSString *_Nonnull)msgKey responseDataKey:(NSString * _Nonnull)responseDataKey;
 
 
 

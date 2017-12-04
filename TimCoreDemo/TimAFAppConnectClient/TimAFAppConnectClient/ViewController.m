@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
 //    [TimAFAppConnectClient setBaseUrl:@"http://api.taoqian123.com/v1/"];
-    TimAFAppConnectClient *share = [TimAFAppConnectClient sharedClientFor:@"https://api.taoqian123.com/v1/"];
+    TimAFAppConnectClient *share = [TimAFAppConnectClient sharedClientFor:@"https://api.taoqian123.com/v3/"];
     TimAFAppConnectClient *share2 = [TimAFAppConnectClient sharedClientFor:@"https://api.kehufox.com/v2/"];
     TimAFAppConnectClient *share3 = [TimAFAppConnectClient sharedClientFor:@"https://api.taoqian123.com/v1/"];
 
