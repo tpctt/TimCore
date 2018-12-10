@@ -141,8 +141,6 @@
 				222BD9411DD2D748002C8F24 /* Sources */,
 				222BD9421DD2D748002C8F24 /* Frameworks */,
 				222BD9431DD2D748002C8F24 /* Resources */,
-				4EB214888302E36C4E49AE21 /* [CP] Embed Pods Frameworks */,
-				A98F365047430A28A7FD868C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,36 +199,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4EB214888302E36C4E49AE21 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TimCoreDemo/Pods-TimCoreDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A98F365047430A28A7FD868C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TimCoreDemo/Pods-TimCoreDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FFCFFCE68B3CF60C3F5E28BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

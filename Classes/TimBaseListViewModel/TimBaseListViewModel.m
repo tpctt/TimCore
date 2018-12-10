@@ -1,6 +1,6 @@
 //
 //  BaseViewModel.m
-//  taoqianbao
+//  TimBaseViewModelDemo
 //
 //  Created by tim on 16/9/6.
 //  Copyright © 2016年 tim. All rights reserved.
@@ -112,7 +112,7 @@ const NSString *TimCachedata_prefix = @"TimCachedata_prefix";
     
     if ( NO == [code isEqualToString: _appConnectClient.sucessCode] ) {
         
-        [subscriber sendError:[NSError errorWithDomain:@"com.taoqian123" code:[code intValue] userInfo:@{NSLocalizedDescriptionKey:msg }]];
+        [subscriber sendError:[NSError errorWithDomain:@"com.timbaseList" code:[code intValue] userInfo:@{NSLocalizedDescriptionKey:msg }]];
         //                    [subscriber sendCompleted];
         return;
     }

@@ -1,0 +1,1 @@
+../../../TimCore/Classes/TimProtocol/TimSearchItemForObjectProtocol.h

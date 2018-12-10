@@ -1,6 +1,6 @@
 //
 //  BaseViewModel.m
-//  taoqianbao
+//  TimBaseViewModelDemo
 //
 //  Created by tim on 16/9/6.
 //  Copyright © 2016年 tim. All rights reserved.
@@ -23,7 +23,7 @@
         
         
         [self initNetError];
-        [self setBaseUrl:@"http://api.taoqian123.com/v3/"];
+        [self setBaseUrl:@"http://api.xxx.com/v3/"];
 
         [self setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
 
@@ -68,7 +68,7 @@
     self = [super init];
     if (self) {
         
-        [self setBaseUrl:@"http://api.taoqian123.com/v3/"];
+        [self setBaseUrl:@"http://api.xxx.com/v3/"];
 //        [self initNetError];
         [self setSucessCode:1 statusCodeKey:@"status" msgKey:@"info" responseDataKey:@"data"];
         

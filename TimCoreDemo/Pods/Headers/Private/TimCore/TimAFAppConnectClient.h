@@ -1,0 +1,1 @@
+../../../TimCore/Classes/TimAFAppConnectClient/TimAFAppConnectClient.h
