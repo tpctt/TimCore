@@ -1,0 +1,6 @@
+module Pods_TimBaseListViewModelDemo {
+  umbrella header "Pods-TimBaseListViewModelDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1E70FAC2C1A9B72F293BCC94F9BDA3B6"
+               BlueprintIdentifier = "8503EC86BD0E74F96895D22970512C6F"
                BlueprintName = "Pods-TimBaseListViewModel"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-TimBaseListViewModel.a">

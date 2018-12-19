@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4095C38E7B31A4DD4E1B9C275F2535B5"
+               BlueprintIdentifier = "4F55CBBA9BE08B8AA2050A5FE67DF78F"
                BlueprintName = "TimCore-TimAFAppConnectClient-TimProtocol-iOS10.3"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libTimCore-TimAFAppConnectClient-TimProtocol-iOS10.3.a">

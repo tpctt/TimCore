@@ -47,7 +47,7 @@ end
 target:TimBaseListViewModelDemo  do
     project 'TimBaseListViewModel/TimBaseListViewModel.xcodeproj'
     
-    pod 'ReactiveCocoa','~>2.5'
+    pod 'ReactiveObjC'#,'~>2.5'
     pod 'TimCore/TimAFAppConnectClient'
 
     pod 'TimCore/TimProtocol'
@@ -59,7 +59,7 @@ end
 target:TimBaseListViewModel  do
     project 'TimBaseListViewModel/TimBaseListViewModel.xcodeproj'
     
-    pod 'ReactiveCocoa','~>2.5'
+    pod 'ReactiveObjC'#,'~>2.5'
     pod 'TimCore/TimAFAppConnectClient'
     
     pod 'TimCore/TimProtocol'

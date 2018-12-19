@@ -44,12 +44,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ReactiveCocoa-iOS10.1.xcscheme</key>
+		<key>ReactiveObjC-iOS10.1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ReactiveCocoa-iOS10.3.xcscheme</key>
+		<key>ReactiveObjC-iOS10.3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
